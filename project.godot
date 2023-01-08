@@ -1,0 +1,90 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "AsepriteImportData",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/AsepriteImportData.gd"
+}, {
+"base": "Node",
+"class": "AsepriteImporter",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/AsepriteImporter.gd"
+}, {
+"base": "Node",
+"class": "EditorTheme",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/EditorTheme.gd"
+}, {
+"base": "Resource",
+"class": "Item",
+"language": "GDScript",
+"path": "res://items/item.gd"
+}, {
+"base": "Spatial",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://tiles/Tile.gd"
+}, {
+"base": "Spatial",
+"class": "Tool",
+"language": "GDScript",
+"path": "res://items/tool.gd"
+} ]
+_global_script_class_icons={
+"AsepriteImportData": "",
+"AsepriteImporter": "",
+"EditorTheme": "",
+"Item": "",
+"Tile": "",
+"Tool": ""
+}
+
+[application]
+
+config/name="LD52"
+run/main_scene="res://level.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Inventory="*res://player/inventory.gd"
+TileManager="*res://tiles/tile_manager.gd"
+CameraTransition="*res://camera_transitition/camera_transition.tscn"
+GameMode="*res://player/game_mode.gd"
+Transition="*res://ui/Transition.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/aseprite_importer/plugin.cfg", "res://addons/gdfxr/plugin.cfg", "res://addons/zylann.scatter/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+theme/custom="res://ui/theme/theme.tres"
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+texture_3d={
+"flags/filter": false
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+environment/default_environment="res://default_env.tres"

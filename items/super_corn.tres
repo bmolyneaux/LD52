@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/item.gd" type="Script" id=1]
+[ext_resource path="res://items/super_corn_cursor.png" type="Texture" id=2]
+[ext_resource path="res://items/corn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://items/super_corn_icon.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 1 )
+name = "Super Corn"
+scene = ExtResource( 3 )
+icon = ExtResource( 4 )
+cursor = ExtResource( 2 )
+cost = 5
+stacks = true
+food = true

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/item_ui.gd" type="Script" id=1]
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=2]
+
+[node name="InventorySlot" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1024.0
+margin_bottom = -600.0
+rect_min_size = Vector2( 34, 34 )
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="TextureButton" type="Button" parent="."]
+margin_right = 16.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 34, 34 )
+focus_mode = 0
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="TextureButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 16, 16 )
+rect_scale = Vector2( 2, 2 )
+
+[node name="Key" type="Label" parent="."]
+anchor_left = 0.092
+anchor_right = 0.092
+anchor_bottom = 0.064
+text = "0"
+
+[node name="Count" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -18.0
+margin_top = -21.0
+align = 2
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

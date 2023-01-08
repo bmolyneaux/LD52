@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://plants/tilled_soil.png" type="Texture" id=1]
+[ext_resource path="res://plants/soil.gd" type="Script" id=2]
+
+[node name="Spatial" type="Spatial" groups=["soil"]]
+script = ExtResource( 2 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 6.25, 0, 0, 0, -2.73196e-07, 6.25, 0, -6.25, -2.73196e-07, 0, 0.01, 0 )
+texture = ExtResource( 1 )

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://doodads/images/rocks2.png" type="Texture" id=1]
+
+[node name="Scatter" type="Spatial"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0.5, 0 )
+billboard = 1
+texture = ExtResource( 1 )

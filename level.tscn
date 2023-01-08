@@ -1,0 +1,1632 @@
+[gd_scene load_steps=48 format=2]
+
+[ext_resource path="res://player/player.png" type="Texture" id=1]
+[ext_resource path="res://doodads/images/rocks2.png" type="Texture" id=2]
+[ext_resource path="res://doodads/images/tumbleweed.png" type="Texture" id=3]
+[ext_resource path="res://doodads/images/skull.png" type="Texture" id=4]
+[ext_resource path="res://doodads/images/rocks.png" type="Texture" id=5]
+[ext_resource path="res://player/player.gd" type="Script" id=6]
+[ext_resource path="res://addons/zylann.scatter/scatter3d.gd" type="Script" id=7]
+[ext_resource path="res://doodads/scatters/skull.tscn" type="PackedScene" id=8]
+[ext_resource path="res://player/shadow.png" type="Texture" id=9]
+[ext_resource path="res://doodads/scatters/BillboardTile.tscn" type="PackedScene" id=10]
+[ext_resource path="res://doodads/scatters/rocks2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://doodads/scatters/grass.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/monster_ui.tscn" type="PackedScene" id=13]
+[ext_resource path="res://items/shears_icon.png" type="Texture" id=14]
+[ext_resource path="res://items/pickup.tscn" type="PackedScene" id=15]
+[ext_resource path="res://plants/TilledSoil.gd" type="Script" id=16]
+[ext_resource path="res://doodads/scatters/fence.tscn" type="PackedScene" id=17]
+[ext_resource path="res://doodads/scatters/water.tscn" type="PackedScene" id=18]
+[ext_resource path="res://items/shears.tres" type="Resource" id=19]
+[ext_resource path="res://ui/inventory_ui.gd" type="Script" id=20]
+[ext_resource path="res://ui/item_ui.tscn" type="PackedScene" id=21]
+[ext_resource path="res://ui/theme/monster_font.tres" type="DynamicFont" id=22]
+[ext_resource path="res://ui/SellButton.gd" type="Script" id=23]
+[ext_resource path="res://ui/money.gd" type="Script" id=24]
+[ext_resource path="res://sfx/sell.sfxr" type="AudioStream" id=25]
+[ext_resource path="res://items/corn.tres" type="Resource" id=26]
+[ext_resource path="res://items/corn_icon.png" type="Texture" id=27]
+[ext_resource path="res://plants/soil.tscn" type="PackedScene" id=28]
+[ext_resource path="res://ui/BuyAndSellLabel.gd" type="Script" id=29]
+[ext_resource path="res://ui/shop_icon.png" type="Texture" id=30]
+[ext_resource path="res://ui/shop_button.gd" type="Script" id=31]
+[ext_resource path="res://npcs/crow_spawner.tscn" type="PackedScene" id=32]
+[ext_resource path="res://plants/soil.gd" type="Script" id=33]
+[ext_resource path="res://items/scarecrow.tscn" type="PackedScene" id=34]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 1000, 1000 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+albedo_color = Color( 0.85098, 0.576471, 0.282353, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 50, 1, 50 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.4, 0.4, 0.4 )
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 32, 0, 16, 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 48, 0, 16, 17 ), Rect2( 64, 0, 16, 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 80, 0, 16, 17 ), Rect2( 96, 0, 16, 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 16, 17 ), Rect2( 16, 0, 16, 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite3D:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.807843, 0.780392, 0.709804, 1 )
+
+[sub_resource type="QuadMesh" id=11]
+material = SubResource( 10 )
+size = Vector2( 0.1, 0.1 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 0.5, 0.01, 0.5 )
+
+[sub_resource type="ProceduralSky" id=13]
+ground_bottom_color = Color( 0.85098, 0.576471, 0.282353, 1 )
+
+[sub_resource type="Environment" id=14]
+background_mode = 2
+background_sky = SubResource( 13 )
+fog_color = Color( 1, 0, 0, 1 )
+fog_sun_color = Color( 1, 0, 0, 1 )
+fog_sun_amount = 1.0
+fog_depth_begin = 1.0
+fog_depth_end = 10.0
+fog_transmit_enabled = true
+fog_height_enabled = true
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+
+[node name="Mesh" type="MeshInstance" parent="Ground"]
+visible = false
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 3 )
+
+[node name="KinematicBody" type="KinematicBody" parent="." groups=["player"]]
+axis_lock_motion_y = true
+move_lock_y = true
+script = ExtResource( 6 )
+
+[node name="Sprite3D" type="Sprite3D" parent="KinematicBody"]
+transform = Transform( 6.25, 0, 0, 0, 6.25, 0, 0, 0, 6.25, 0, 0.48, 0 )
+billboard = 1
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 16, 17 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+shape = SubResource( 4 )
+
+[node name="CameraRoot" type="Spatial" parent="KinematicBody"]
+transform = Transform( 0.707107, -0.473147, 0.525482, 0, 0.743145, 0.66913, -0.707107, -0.473147, 0.525482, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="KinematicBody/CameraRoot" groups=["main_camera"]]
+transform = Transform( 1, 0, 0, 0, 1, -1.78814e-07, 0, 2.98023e-08, 1, 0, 0, 6 )
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody"]
+anims/idle1 = SubResource( 5 )
+anims/idle2 = SubResource( 6 )
+anims/idle3 = SubResource( 7 )
+anims/walk = SubResource( 8 )
+
+[node name="Shadow" type="Sprite3D" parent="KinematicBody"]
+transform = Transform( 6, 0, 0, 0, -2.62268e-07, 6, 0, -6, -2.62268e-07, 0, 0.01, 0 )
+visible = false
+texture = ExtResource( 9 )
+
+[node name="Particles" type="CPUParticles" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+emitting = false
+lifetime = 0.4
+explosiveness = 1.0
+randomness = 1.0
+local_coords = false
+mesh = SubResource( 11 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.5
+angular_velocity_random = 0.2
+
+[node name="Doodads" type="Spatial" parent="."]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Doodads"]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -1, 0.5, 1 )
+billboard = 1
+texture = ExtResource( 5 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="Doodads"]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -1, 0.5, 2 )
+billboard = 1
+texture = ExtResource( 3 )
+
+[node name="Sprite3D3" type="Sprite3D" parent="Doodads"]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -2, 0.5, 1 )
+billboard = 1
+texture = ExtResource( 2 )
+
+[node name="Sprite3D4" type="Sprite3D" parent="Doodads"]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -2, 0.5, 2 )
+billboard = 1
+texture = ExtResource( 4 )
+
+[node name="Scatter3D" type="Spatial" parent="."]
+script = ExtResource( 7 )
+_scenes = [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 28 ) ]
+
+[node name="Scatter9" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( -0.621065, 0, 0.783759, 0, 1, 0, -0.783759, 0, -0.621065, -1, 0, -3 )
+
+[node name="Scatter10" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( -0.415652, 0, 0.909524, 0, 1, 0, -0.909524, 0, -0.415652, 4, 0, 2 )
+
+[node name="Scatter11" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( -0.889737, 0, -0.456473, 0, 1, 0, 0.456473, 0, -0.889737, 4, 0, 3 )
+
+[node name="Scatter12" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( -0.490242, 0, -0.871586, 0, 1, 0, 0.871586, 0, -0.490242, 6, 0, 1 )
+
+[node name="Scatter13" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 0.515618, 0, -0.856819, 0, 1, 0, 0.856819, 0, 0.515618, 4, 0, -4 )
+
+[node name="Scatter14" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( -0.898794, 0, 0.438371, 0, 1, 0, -0.438371, 0, -0.898794, 2, 0, -3 )
+
+[node name="Scatter15" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( -0.997282, 0, -0.0736807, 0, 1, 0, 0.0736807, 0, -0.997282, 1, 0, 3 )
+
+[node name="Scatter16" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 0.952855, 0, -0.303425, 0, 1, 0, 0.303425, 0, 0.952855, -2, 0, 3 )
+
+[node name="Scatter17" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( -0.793787, 0, 0.608196, 0, 1, 0, -0.608196, 0, -0.793787, -3, 0, -1 )
+
+[node name="Scatter18" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 0.824922, 0, 0.565247, 0, 1, 0, -0.565247, 0, 0.824922, -4, 0, -2 )
+
+[node name="Scatter20" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( -0.85532, 0, -0.518101, 0, 1, 0, 0.518101, 0, -0.85532, -3, 0, -3 )
+
+[node name="Scatter19" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3 )
+
+[node name="Scatter21" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2 )
+
+[node name="Scatter22" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1 )
+
+[node name="Scatter23" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
+[node name="Scatter" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6 )
+
+[node name="Scatter2" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -5 )
+
+[node name="Scatter3" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 7 )
+
+[node name="Scatter4" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6 )
+
+[node name="Scatter5" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5 )
+
+[node name="Scatter6" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 3 )
+
+[node name="Scatter7" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1 )
+
+[node name="Scatter8" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1 )
+
+[node name="Scatter24" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1 )
+
+[node name="Scatter25" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5 )
+
+[node name="Scatter26" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4 )
+
+[node name="Scatter27" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4 )
+
+[node name="Scatter28" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -8 )
+
+[node name="Scatter29" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -2 )
+
+[node name="Scatter30" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1 )
+
+[node name="Scatter32" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8 )
+
+[node name="Scatter33" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9 )
+
+[node name="Scatter34" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6 )
+
+[node name="Scatter35" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5 )
+
+[node name="Scatter36" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7 )
+
+[node name="Scatter37" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4 )
+
+[node name="Scatter38" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5 )
+
+[node name="Scatter39" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5 )
+
+[node name="Scatter40" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
+
+[node name="Scatter41" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5 )
+
+[node name="Scatter42" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5 )
+
+[node name="Scatter43" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5 )
+
+[node name="Scatter44" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5 )
+
+[node name="Scatter45" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1 )
+
+[node name="Scatter46" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2 )
+
+[node name="Scatter47" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+
+[node name="Scatter48" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4 )
+
+[node name="Scatter49" parent="Scatter3D" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3 )
+
+[node name="Scatter50" parent="Scatter3D" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -7 )
+
+[node name="Scatter51" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -7 )
+
+[node name="Spatial" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4 )
+
+[node name="Spatial2" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4 )
+
+[node name="Spatial3" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4 )
+
+[node name="Spatial4" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4 )
+
+[node name="Spatial5" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
+
+[node name="Spatial6" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4 )
+
+[node name="Spatial7" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4 )
+
+[node name="Spatial8" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4 )
+
+[node name="Spatial9" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4 )
+
+[node name="Spatial10" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4 )
+
+[node name="Spatial11" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4 )
+
+[node name="Spatial13" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4 )
+
+[node name="Spatial14" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 4 )
+
+[node name="Spatial15" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4 )
+
+[node name="Spatial16" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 4 )
+
+[node name="Spatial17" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 4 )
+
+[node name="Spatial18" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4 )
+
+[node name="Spatial19" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4 )
+
+[node name="Spatial20" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 4 )
+
+[node name="Spatial21" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4 )
+
+[node name="Spatial22" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 4 )
+
+[node name="Spatial23" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 4 )
+
+[node name="Spatial24" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 4 )
+
+[node name="Spatial25" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 4 )
+
+[node name="Spatial26" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 4 )
+
+[node name="Spatial27" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 4 )
+
+[node name="Spatial28" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 4 )
+
+[node name="Spatial29" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 4 )
+
+[node name="Spatial30" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 4 )
+
+[node name="Spatial12" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 4 )
+
+[node name="Spatial31" parent="Scatter3D" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+
+[node name="Spatial32" parent="Scatter3D" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2 )
+
+[node name="Spatial33" parent="Scatter3D" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1 )
+
+[node name="Spatial34" parent="Scatter3D" instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+
+[node name="Spatial35" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4 )
+
+[node name="Spatial36" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 4 )
+
+[node name="Spatial37" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 4 )
+
+[node name="Spatial38" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 4 )
+
+[node name="Spatial39" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 4 )
+
+[node name="Spatial40" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 4 )
+
+[node name="Spatial41" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 4 )
+
+[node name="Spatial42" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 4 )
+
+[node name="Spatial43" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 4 )
+
+[node name="Spatial44" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 4 )
+
+[node name="Spatial45" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 4 )
+
+[node name="Spatial46" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 4 )
+
+[node name="Spatial47" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 4 )
+
+[node name="Spatial48" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 4 )
+
+[node name="Spatial49" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 4 )
+
+[node name="Spatial50" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 4 )
+
+[node name="Spatial51" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 4 )
+
+[node name="Spatial52" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 4 )
+
+[node name="Spatial53" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 4 )
+
+[node name="Spatial54" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 4 )
+
+[node name="Spatial55" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 4 )
+
+[node name="Scatter31" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 2 )
+
+[node name="Scatter52" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 1 )
+
+[node name="Scatter53" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 0 )
+
+[node name="Scatter54" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -1 )
+
+[node name="Scatter55" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -2 )
+
+[node name="Scatter56" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -3 )
+
+[node name="Scatter57" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -4 )
+
+[node name="Scatter58" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -5 )
+
+[node name="Scatter59" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -6 )
+
+[node name="Scatter60" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -7 )
+
+[node name="Scatter61" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -8 )
+
+[node name="Scatter62" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -9 )
+
+[node name="Scatter63" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -10 )
+
+[node name="Scatter64" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -11 )
+
+[node name="Scatter65" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -12 )
+
+[node name="Scatter66" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -13 )
+
+[node name="Scatter67" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -14 )
+
+[node name="Scatter68" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -15 )
+
+[node name="Scatter69" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -16 )
+
+[node name="Scatter70" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -17 )
+
+[node name="Scatter71" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -18 )
+
+[node name="Scatter72" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -19 )
+
+[node name="Scatter73" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -19 )
+
+[node name="Scatter74" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -19 )
+
+[node name="Scatter75" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -19 )
+
+[node name="Scatter76" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -19 )
+
+[node name="Scatter77" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -19 )
+
+[node name="Scatter79" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -19 )
+
+[node name="Scatter80" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -19 )
+
+[node name="Scatter81" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -19 )
+
+[node name="Scatter82" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -19 )
+
+[node name="Scatter83" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -19 )
+
+[node name="Scatter84" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -19 )
+
+[node name="Scatter85" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -19 )
+
+[node name="Scatter86" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -19 )
+
+[node name="Scatter87" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -19 )
+
+[node name="Scatter88" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -19 )
+
+[node name="Scatter89" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -19 )
+
+[node name="Scatter90" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -19 )
+
+[node name="Scatter91" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -19 )
+
+[node name="Scatter92" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -19 )
+
+[node name="Scatter93" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -19 )
+
+[node name="Scatter94" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -19 )
+
+[node name="Scatter95" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -19 )
+
+[node name="Scatter96" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -19 )
+
+[node name="Scatter97" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -19 )
+
+[node name="Scatter98" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19 )
+
+[node name="Scatter99" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -19 )
+
+[node name="Scatter100" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -19 )
+
+[node name="Scatter101" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -19 )
+
+[node name="Scatter102" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -19 )
+
+[node name="Scatter103" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -19 )
+
+[node name="Scatter104" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -19 )
+
+[node name="Scatter105" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -19 )
+
+[node name="Scatter106" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -19 )
+
+[node name="Scatter107" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -19 )
+
+[node name="Scatter108" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -19 )
+
+[node name="Scatter109" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -19 )
+
+[node name="Scatter110" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -19 )
+
+[node name="Scatter111" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -19 )
+
+[node name="Scatter112" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -19 )
+
+[node name="Scatter113" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -19 )
+
+[node name="Scatter114" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -19 )
+
+[node name="Scatter115" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -19 )
+
+[node name="Scatter116" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -19 )
+
+[node name="Scatter117" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -19 )
+
+[node name="Scatter118" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -19 )
+
+[node name="Scatter119" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -19 )
+
+[node name="Scatter120" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -19 )
+
+[node name="Scatter121" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -19 )
+
+[node name="Scatter122" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -19 )
+
+[node name="Scatter123" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -18 )
+
+[node name="Scatter124" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -17 )
+
+[node name="Scatter125" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -16 )
+
+[node name="Scatter126" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -15 )
+
+[node name="Scatter127" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -14 )
+
+[node name="Scatter128" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -13 )
+
+[node name="Scatter129" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -12 )
+
+[node name="Scatter130" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -11 )
+
+[node name="Scatter131" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -10 )
+
+[node name="Scatter132" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -9 )
+
+[node name="Scatter133" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -8 )
+
+[node name="Scatter134" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -7 )
+
+[node name="Scatter135" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -6 )
+
+[node name="Scatter136" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -5 )
+
+[node name="Scatter137" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -4 )
+
+[node name="Scatter138" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -3 )
+
+[node name="Scatter139" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -2 )
+
+[node name="Scatter140" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -1 )
+
+[node name="Scatter141" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 3 )
+
+[node name="Scatter142" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 2 )
+
+[node name="Scatter143" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 1 )
+
+[node name="Scatter144" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0 )
+
+[node name="Scatter145" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 3 )
+
+[node name="Scatter78" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -19 )
+
+[node name="Scatter146" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -15 )
+
+[node name="Scatter147" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -14 )
+
+[node name="Scatter148" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -9 )
+
+[node name="Scatter149" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -4 )
+
+[node name="Scatter150" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -12 )
+
+[node name="Scatter151" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -7 )
+
+[node name="Scatter152" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -13 )
+
+[node name="Scatter153" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -14 )
+
+[node name="Scatter154" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -10 )
+
+[node name="Scatter155" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -9 )
+
+[node name="Scatter156" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -8 )
+
+[node name="Scatter157" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -7 )
+
+[node name="Scatter158" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -6 )
+
+[node name="Scatter159" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -5 )
+
+[node name="Scatter160" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -4 )
+
+[node name="Scatter161" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -3 )
+
+[node name="Scatter162" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0 )
+
+[node name="Scatter163" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0 )
+
+[node name="Scatter164" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0 )
+
+[node name="Scatter165" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0 )
+
+[node name="Scatter166" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 0 )
+
+[node name="Scatter167" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0 )
+
+[node name="Scatter168" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -12 )
+
+[node name="Scatter169" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -12 )
+
+[node name="Scatter170" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -12 )
+
+[node name="Scatter171" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -12 )
+
+[node name="Scatter172" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -12 )
+
+[node name="Scatter173" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -12 )
+
+[node name="Scatter174" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -12 )
+
+[node name="Scatter175" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -12 )
+
+[node name="Scatter176" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -12 )
+
+[node name="Scatter177" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -8 )
+
+[node name="Scatter178" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -7 )
+
+[node name="Scatter179" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -6 )
+
+[node name="Scatter180" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -5 )
+
+[node name="Scatter181" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -4 )
+
+[node name="Scatter182" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -3 )
+
+[node name="Scatter183" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -2 )
+
+[node name="Scatter184" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -9 )
+
+[node name="Scatter185" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -10 )
+
+[node name="Scatter186" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -10 )
+
+[node name="Scatter187" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -10 )
+
+[node name="Scatter188" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -10 )
+
+[node name="Scatter189" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -10 )
+
+[node name="Scatter190" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -10 )
+
+[node name="Scatter191" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -10 )
+
+[node name="Scatter192" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -10 )
+
+[node name="Scatter193" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -16 )
+
+[node name="Scatter194" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -15 )
+
+[node name="Scatter195" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -15 )
+
+[node name="Scatter196" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -15 )
+
+[node name="Scatter197" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -15 )
+
+[node name="Scatter198" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15 )
+
+[node name="Scatter199" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -15 )
+
+[node name="Scatter200" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -15 )
+
+[node name="Scatter201" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -12 )
+
+[node name="Scatter202" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -16 )
+
+[node name="Scatter203" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -15 )
+
+[node name="Scatter204" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -14 )
+
+[node name="Scatter205" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -13 )
+
+[node name="Scatter206" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12 )
+
+[node name="Scatter207" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -11 )
+
+[node name="Scatter208" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -10 )
+
+[node name="Scatter209" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -1 )
+
+[node name="Scatter210" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -1 )
+
+[node name="Scatter211" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -1 )
+
+[node name="Scatter212" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 0 )
+
+[node name="Scatter213" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -1 )
+
+[node name="Scatter214" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -5 )
+
+[node name="Scatter215" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -2 )
+
+[node name="Scatter216" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -3 )
+
+[node name="Scatter217" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -7 )
+
+[node name="Scatter218" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -3 )
+
+[node name="Scatter219" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0 )
+
+[node name="Scatter220" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 2 )
+
+[node name="Scatter221" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 1 )
+
+[node name="Scatter222" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -4 )
+
+[node name="Scatter223" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -8 )
+
+[node name="Scatter224" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -12 )
+
+[node name="Scatter225" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -15 )
+
+[node name="Scatter226" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -15 )
+
+[node name="Scatter227" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -16 )
+
+[node name="Scatter228" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -13 )
+
+[node name="Scatter229" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -10 )
+
+[node name="Scatter230" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -13 )
+
+[node name="Scatter231" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -16 )
+
+[node name="Scatter232" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -15 )
+
+[node name="Scatter233" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -15 )
+
+[node name="Scatter234" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -12 )
+
+[node name="Scatter235" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -15 )
+
+[node name="Scatter236" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -9 )
+
+[node name="Scatter237" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -6 )
+
+[node name="Scatter238" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -4 )
+
+[node name="Scatter239" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -2 )
+
+[node name="Scatter240" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 2 )
+
+[node name="Scatter241" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 2 )
+
+[node name="Scatter242" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -4 )
+
+[node name="Scatter243" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 1 )
+
+[node name="Scatter244" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0 )
+
+[node name="Scatter245" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2 )
+
+[node name="Scatter246" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0 )
+
+[node name="Scatter247" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 2 )
+
+[node name="Scatter248" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 6 )
+
+[node name="Scatter249" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 6 )
+
+[node name="Scatter250" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 8 )
+
+[node name="Scatter251" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 5 )
+
+[node name="Scatter252" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 5 )
+
+[node name="Scatter253" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 7 )
+
+[node name="Scatter254" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 6 )
+
+[node name="Scatter255" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 5 )
+
+[node name="Scatter256" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6 )
+
+[node name="Scatter257" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 6 )
+
+[node name="Scatter258" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 7 )
+
+[node name="Scatter259" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 5 )
+
+[node name="Scatter260" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 7 )
+
+[node name="Scatter261" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 8 )
+
+[node name="Scatter262" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 5 )
+
+[node name="Scatter263" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 6 )
+
+[node name="Scatter264" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 8 )
+
+[node name="Scatter268" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5 )
+
+[node name="Scatter269" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 5 )
+
+[node name="Scatter265" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 5 )
+
+[node name="Scatter266" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 5 )
+
+[node name="Scatter267" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5 )
+
+[node name="Scatter270" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 5 )
+
+[node name="Scatter271" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 5 )
+
+[node name="Scatter272" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 5 )
+
+[node name="Scatter273" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 6 )
+
+[node name="Scatter274" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 7 )
+
+[node name="Scatter275" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 8 )
+
+[node name="Scatter276" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6 )
+
+[node name="Scatter277" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 7 )
+
+[node name="Scatter278" parent="Scatter3D" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 8 )
+
+[node name="Scatter279" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 6 )
+
+[node name="Scatter280" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 6 )
+
+[node name="Scatter281" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 7 )
+
+[node name="Scatter282" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 5 )
+
+[node name="Scatter283" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 6 )
+
+[node name="Scatter284" parent="Scatter3D" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6 )
+
+[node name="Scatter285" parent="Scatter3D" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 7 )
+
+[node name="Scatter286" parent="Scatter3D" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 6 )
+
+[node name="Scatter287" parent="Scatter3D" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 5 )
+
+[node name="Scatter288" parent="Scatter3D" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 7 )
+
+[node name="Scatter289" parent="Scatter3D" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 8 )
+
+[node name="Scatter290" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -3 )
+
+[node name="Scatter291" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -4 )
+
+[node name="Scatter292" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -5 )
+
+[node name="Scatter293" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -9 )
+
+[node name="Scatter294" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -10 )
+
+[node name="Scatter295" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -14 )
+
+[node name="Scatter296" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -11 )
+
+[node name="Scatter297" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -12 )
+
+[node name="Scatter298" parent="Scatter3D" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -5 )
+
+[node name="Scatter299" parent="Scatter3D" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0 )
+
+[node name="Scatter300" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 1 )
+
+[node name="Scatter301" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0 )
+
+[node name="Scatter302" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -4 )
+
+[node name="Scatter303" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -5 )
+
+[node name="Spatial56" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -7 )
+
+[node name="Spatial57" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -6 )
+
+[node name="Spatial58" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -5 )
+
+[node name="Spatial59" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -5 )
+
+[node name="Spatial60" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -6 )
+
+[node name="Spatial61" parent="Scatter3D" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -7 )
+
+[node name="Scatter304" parent="Scatter3D" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -3 )
+
+[node name="Scatter305" parent="Scatter3D" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -2 )
+
+[node name="Scatter306" parent="Scatter3D" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -13 )
+
+[node name="Scatter307" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -13 )
+
+[node name="Scatter308" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -13 )
+
+[node name="Scatter309" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12 )
+
+[node name="Scatter310" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -14 )
+
+[node name="Scatter311" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -15 )
+
+[node name="Scatter312" parent="Scatter3D" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -4 )
+
+[node name="Scatter313" parent="Scatter3D" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -7 )
+
+[node name="Scatter314" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3 )
+
+[node name="Scatter315" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -4 )
+
+[node name="Scatter316" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -6 )
+
+[node name="Scatter317" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -8 )
+
+[node name="Scatter318" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -7 )
+
+[node name="Scatter319" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9 )
+
+[node name="Scatter320" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -8 )
+
+[node name="Scatter321" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7 )
+
+[node name="Scatter322" parent="Scatter3D" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6 )
+
+[node name="Spatial62" type="Spatial" parent="Scatter3D" groups=["soil"] instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -2 )
+script = ExtResource( 33 )
+
+[node name="Spatial63" type="Spatial" parent="Scatter3D" groups=["soil"] instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -2 )
+script = ExtResource( 33 )
+
+[node name="Spatial64" type="Spatial" parent="Scatter3D" groups=["soil"] instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -2 )
+script = ExtResource( 33 )
+
+[node name="Spatial65" type="Spatial" parent="Scatter3D" groups=["soil"] instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -2 )
+script = ExtResource( 33 )
+
+[node name="Spatial66" type="Spatial" parent="Scatter3D" groups=["soil"] instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0 )
+script = ExtResource( 33 )
+
+[node name="Spatial67" type="Spatial" parent="Scatter3D" groups=["soil"] instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0 )
+script = ExtResource( 33 )
+
+[node name="Spatial68" type="Spatial" parent="Scatter3D" groups=["soil"] instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -1 )
+script = ExtResource( 33 )
+
+[node name="Spatial69" type="Spatial" parent="Scatter3D" groups=["soil"] instance=ExtResource( 28 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -14 )
+script = ExtResource( 33 )
+
+[node name="TilledSoil" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+script = ExtResource( 16 )
+
+[node name="Area" type="Area" parent="TilledSoil"]
+
+[node name="CollisionShape" type="CollisionShape" parent="TilledSoil/Area"]
+shape = SubResource( 12 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.5
+rect_scale = Vector2( 2, 2 )
+mouse_filter = 2
+
+[node name="Inventory" type="HBoxContainer" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+script = ExtResource( 20 )
+
+[node name="InventorySlot2" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 34.0
+margin_bottom = 34.0
+
+[node name="InventorySlot3" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 38.0
+margin_right = 72.0
+margin_bottom = 34.0
+
+[node name="InventorySlot4" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 76.0
+margin_right = 110.0
+margin_bottom = 34.0
+
+[node name="InventorySlot5" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_right = 148.0
+margin_bottom = 34.0
+
+[node name="InventorySlot6" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 152.0
+margin_right = 186.0
+margin_bottom = 34.0
+
+[node name="InventorySlot7" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 190.0
+margin_right = 224.0
+margin_bottom = 34.0
+
+[node name="InventorySlot8" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_right = 262.0
+margin_bottom = 34.0
+
+[node name="InventorySlot9" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 266.0
+margin_right = 300.0
+margin_bottom = 34.0
+
+[node name="InventorySlot10" parent="Control/Inventory" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 304.0
+margin_right = 338.0
+margin_bottom = 34.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -92.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+margin_top = 5.0
+margin_right = 50.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 50, 0 )
+text = "$5"
+script = ExtResource( 24 )
+
+[node name="SellButton" type="Button" parent="Control/HBoxContainer"]
+visible = false
+margin_left = 54.0
+margin_right = 89.0
+margin_bottom = 20.0
+grow_horizontal = 0
+text = "Sell"
+script = ExtResource( 23 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/HBoxContainer/SellButton"]
+stream = ExtResource( 25 )
+
+[node name="Button" type="Button" parent="Control/HBoxContainer"]
+margin_left = 54.0
+margin_right = 86.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+focus_mode = 0
+script = ExtResource( 31 )
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Button"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 30 )
+
+[node name="Shovel" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1 )
+texture = ExtResource( 14 )
+item = ExtResource( 19 )
+
+[node name="BuyAndSellLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.115
+anchor_right = 1.0
+anchor_bottom = 0.16
+margin_left = -238.0
+margin_bottom = 5.0
+custom_fonts/font = ExtResource( 22 )
+text = "Buy and sell stuff"
+script = ExtResource( 29 )
+
+[node name="Corn" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2 )
+texture = ExtResource( 27 )
+item = ExtResource( 26 )
+
+[node name="Corn2" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2 )
+texture = ExtResource( 27 )
+item = ExtResource( 26 )
+
+[node name="Corn3" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -13 )
+texture = ExtResource( 27 )
+item = ExtResource( 26 )
+
+[node name="Corn4" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -17 )
+texture = ExtResource( 27 )
+item = ExtResource( 26 )
+
+[node name="Corn5" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+texture = ExtResource( 27 )
+item = ExtResource( 26 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 14 )
+
+[node name="Control2" parent="." instance=ExtResource( 13 )]
+
+[node name="Spatial" parent="." instance=ExtResource( 32 )]
+
+[node name="Scatter" parent="." instance=ExtResource( 34 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -4 )
+
+[connection signal="input_event" from="TilledSoil/Area" to="TilledSoil" method="_on_Area_input_event"]
+[connection signal="pressed" from="Control/HBoxContainer/SellButton" to="Control/HBoxContainer/SellButton" method="_on_SellButton_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/Button" to="Control/HBoxContainer/Button" method="_on_Button_pressed"]

@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamSample"
+path="res://.import/harvest.sfxr-d349e37437e67e737a348a6f0557bf48.sample"
+
+[deps]
+
+source_file="res://sfx/harvest.sfxr"
+dest_files=[ "res://.import/harvest.sfxr-d349e37437e67e737a348a6f0557bf48.sample" ]
+
+[params]
+
+loop=false

@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamSample"
+path="res://.import/gun.sfxr-ebbeebafb99ead9d027601ed67c70a33.sample"
+
+[deps]
+
+source_file="res://sfx/gun.sfxr"
+dest_files=[ "res://.import/gun.sfxr-ebbeebafb99ead9d027601ed67c70a33.sample" ]
+
+[params]
+
+loop=false

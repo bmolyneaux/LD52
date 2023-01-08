@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://sfx/pickup.sfxr" type="AudioStream" id=1]
+[ext_resource path="res://items/pickup.gd" type="Script" id=2]
+[ext_resource path="res://sfx/sfx_player.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "bob"
+length = 2.0
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0.5, 0, 0, 0, 0, 1, 6.25, 6.25, 6.25, 1, 1, 0, 0.652577, 0, 0, 0, 0, 1, 6.25, 6.25, 6.25, 2, 1, 0, 0.5, 0, 0, 0, 0, 1, 6.25, 6.25, 6.25 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.4, 0.4, 0.4 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 6.25, 0, 0, 0, 6.25, 0, 0, 0, 6.25, 0, 0.5, 0 )
+billboard = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "bob"
+anims/bob = SubResource( 1 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 2 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[connection signal="tree_exiting" from="." to="AudioStreamPlayer3D" method="_on_Spatial_tree_exiting"]
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

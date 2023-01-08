@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/store_ui.gd" type="Script" id=2]
+[ext_resource path="res://items/shovel.tres" type="Resource" id=3]
+[ext_resource path="res://items/corn.tres" type="Resource" id=4]
+[ext_resource path="res://ui/shop_item_ui.tscn" type="PackedScene" id=5]
+[ext_resource path="res://items/scarecrow.tres" type="Resource" id=6]
+[ext_resource path="res://items/super_corn.tres" type="Resource" id=7]
+
+[sub_resource type="NoiseTexture" id=1]
+width = 1
+height = 1
+
+[node name="Store" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0, 0, 0, 0.360784 )
+anchor_left = 0.409
+anchor_right = 0.905
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 1 )
+expand = true
+
+[node name="Buy" type="ScrollContainer" parent="."]
+anchor_left = 0.45
+anchor_top = 0.01
+anchor_right = 0.9
+anchor_bottom = 0.49
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buy"]
+margin_right = 460.8
+margin_bottom = 288.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Corn" parent="Buy/VBoxContainer" instance=ExtResource( 5 )]
+margin_right = 460.0
+item = ExtResource( 4 )
+
+[node name="Shovel" parent="Buy/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 25.0
+margin_right = 460.0
+margin_bottom = 46.0
+item = ExtResource( 3 )
+
+[node name="Scarecrow" parent="Buy/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 50.0
+margin_right = 460.0
+margin_bottom = 71.0
+item = ExtResource( 6 )
+
+[node name="SuperCorn" parent="Buy/VBoxContainer" instance=ExtResource( 5 )]
+visible = false
+margin_top = 75.0
+margin_right = 460.0
+margin_bottom = 96.0
+item = ExtResource( 7 )
+
+[node name="Sell" type="ScrollContainer" parent="."]
+anchor_left = 0.45
+anchor_top = 0.51
+anchor_right = 0.9
+anchor_bottom = 0.99
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sell"]
+margin_right = 460.8
+margin_bottom = 288.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SellLabel" type="Label" parent="."]
+anchor_top = 0.51
+anchor_right = 0.45
+anchor_bottom = 1.0
+margin_right = -10.0
+grow_horizontal = 0
+text = "Sell
+"
+align = 2
+
+[node name="BuyLabel" type="Label" parent="."]
+anchor_top = 0.01
+anchor_right = 0.45
+anchor_bottom = 0.5
+margin_right = -10.0
+grow_horizontal = 0
+text = "Buy
+"
+align = 2

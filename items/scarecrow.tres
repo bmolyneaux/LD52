@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/item.gd" type="Script" id=1]
+[ext_resource path="res://items/scarecrow_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/scarecrow_placement.tscn" type="PackedScene" id=3]
+[ext_resource path="res://items/scarecrow_cursor.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 1 )
+name = "Scarecrow"
+scene = ExtResource( 3 )
+icon = ExtResource( 2 )
+cursor = ExtResource( 4 )
+cost = 10
+stacks = true
+food = false
